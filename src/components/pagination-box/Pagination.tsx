@@ -11,6 +11,7 @@ const PagingBox = ({ total, tableProp, update }: {
     const maxPage = Math.ceil(total / tableProp.pageSize);
     const pageList = Array.from(Array(maxPage).keys()).map(i => i + 1);
     return <div className='page-container'>
+        Total {total} records, showing
         <div className="page-size">
             {PAGES.map(p => {
                 return <div
@@ -18,12 +19,12 @@ const PagingBox = ({ total, tableProp, update }: {
                     onClick={() => { update('pageSize', p.valueOf()) }}
                 >{p}</div>
             })}
-        </div> records per page
+        </div> records per page. Jump to
 
         <div className="page-numbers">
             <a onClick={() => { update('curPage', 1) }}>1</a>
             {tableProp.curPage > 1 && <a onClick={() => { update('curPage', tableProp.curPage - 1) }}>{'<'}</a>}
-            Jump to:<select value={tableProp.curPage} onChange={p => { update('curPage', Number(p.target.value)) }}>
+            <select value={tableProp.curPage} onChange={p => { update('curPage', Number(p.target.value)) }}>
                 {pageList.map(p => {
                     return <option value={p}>{p}</option>
                 })}

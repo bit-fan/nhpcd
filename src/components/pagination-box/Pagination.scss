@@ -2,11 +2,11 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 5px;
+    gap: 0.5rem;
 
     .page-size {
         border: solid 2px gray;
-        border-radius: 10px;
+        border-radius: 0.5rem;
         display: flex;
 
         & .selected-page {
@@ -17,21 +17,24 @@
         &>* {
             border-left: solid 1px gray;
             border-right: solid 1px gray;
-            padding: 5px;
+            padding: 0.5rem;
         }
     }
 
     .page-numbers {
         border: solid 2px gray;
-        border-radius: 10px;
+        border-radius: 0.5rem;
         display: flex;
-        gap: 5px;
         align-items: center;
+
+        & select {
+            border: none;
+        }
 
         &>* {
             border-left: solid 1px gray;
             border-right: solid 1px gray;
-            padding: 5px;
+            padding: 0.5rem;
         }
     }
 }

@@ -29,7 +29,7 @@ const Filter = ({ values, updateValue }: {
     }
     return <div className='filter-wrapper'>
         <div className='boundary-wrapper'>
-            <div>&#x1F50E;&#xFE0F;</div>
+            <div className='icon'><div>&#x1F50E;&#xFE0F;</div></div>
             <RangeBoundaryBlock type='lower' updateRange={newRange => updateValue({ ...values, ...newRange })} value={values?.lower} />
         </div>
         <div className='boundary-wrapper'>

@@ -1,14 +1,14 @@
 .user-container {
     display: flex;
-    height: 30px;
-    padding: 10px;
-    gap: 10px;
+    height: 2rem;
+    padding: 1rem;
+    gap: 1rem;
     align-items: center;
     background-color: gray;
 
     .user-icon {
-        width: 20px;
-        height: 20px;
+        width: 2rem;
+        height: 2rem;
     }
 
     .horizontal-gap {
@@ -21,8 +21,8 @@
 
     .functions-wrapper {
         position: absolute;
-        padding: 10px;
-        right: 10px;
+        padding: 1rem;
+        right: 1rem;
         background-color: grey;
 
         ul {

@@ -2,38 +2,46 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 10px 0;
+    margin: 1rem 0 2rem;
 
     .boundary-wrapper {
         flex: 1;
         display: flex;
         align-items: center;
 
+        .icon {
+            background-color: lightgray;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 2.5rem;
+        }
+
         &>div:first-child {
-            width: 40px;
+            width: 2.5rem;
         }
 
         .boundary-input-wrapper {
             border: solid 1px lightgray;
             flex: 1;
-            height: 40px;
+            height: 2.5rem;
             display: flex;
-            gap: 10px;
+            gap: 1rem;
             align-items: center;
 
             .range-label {
-                padding: 10px;
+                padding: 1rem;
 
                 &> :first-child {
                     font-weight: 400;
                     color: lightgray;
-                    font-size: 10px;
+                    font-size: 1rem;
                 }
 
                 &> :nth-child(2) {
                     font-weight: 600;
                     color: darkgray;
-                    font-size: 12px;
+                    font-size: 0.75rem;
                 }
             }
 

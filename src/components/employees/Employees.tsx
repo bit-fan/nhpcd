@@ -41,7 +41,7 @@ const Employees: React.FC<{
         </div>
     }
     return <div>
-        <div className="title" >employee</div>
+        <div className="title" >Employees</div>
         <div>
             <div className="header" />
             <div className="body" >
