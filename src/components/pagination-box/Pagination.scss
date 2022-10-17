@@ -1,0 +1,35 @@
+.page-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5px;
+
+    .page-size {
+        border: solid 2px gray;
+        border-radius: 10px;
+        display: flex;
+
+        & .selected-page {
+            background-color: gray;
+            color: white;
+        }
+
+        &>* {
+            border-left: solid 1px gray;
+            border-right: solid 1px gray;
+            padding: 5px;
+        }
+    }
+
+    .page-numbers {
+        border: solid 2px gray;
+        border-radius: 10px;
+        display: flex;
+
+        &>* {
+            border-left: solid 1px gray;
+            border-right: solid 1px gray;
+            padding: 5px;
+        }
+    }
+}
