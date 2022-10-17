@@ -1,0 +1,40 @@
+.title {
+    text-align: left;
+}
+
+.row-container {
+    display: flex;
+    align-items: center;
+
+    &.body {
+        margin-bottom: 10px;
+        border-radius: 10px;
+        background-color: lightgrey;
+        padding: 10px;
+
+        .id-wrapper {
+            display: flex;
+            justify-content: center;
+
+            & img {
+                margin-right: 10px;
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        .action-wrpper>* {
+            margin-left: 10px;
+        }
+    }
+
+    &.header {
+        color: black;
+        font-weight: 600;
+        margin: 5px 0;
+    }
+
+    &>* {
+        flex: 1;
+    }
+}

@@ -1,0 +1,1 @@
+export const SERVERIP = "https://nphc-hr.free.beeceptor.com";
