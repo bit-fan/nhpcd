@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { IEmployeeTableColumns } from "../../pages/dashboard/Dashboard";
 import './Employees.scss';
 
 const EmployeeRow = ({ data }: { data: any }) => {
@@ -14,7 +15,10 @@ const EmployeeRow = ({ data }: { data: any }) => {
     </>
 
 }
-const Employees: React.FC<{ employees: [] }> = ({ employees }: { employees: any[] }) => {
+const Employees: React.FC<{
+    employees: [],
+    update: (key: 'sortBy' | 'order', val: IEmployeeTableColumns) => void
+}> = ({ employees, update }) => {
     console.log('employees', employees)
     return <div>
         <div className="title" >employee</div>
@@ -22,10 +26,10 @@ const Employees: React.FC<{ employees: [] }> = ({ employees }: { employees: any[
             <div className="header" />
             <div className="body" >
                 <div className="row-container header">
-                    <div>id</div>
-                    <div>Name</div>
-                    <div>Login</div>
-                    <div>Salary</div>
+                    <div onClick={() => { update('sortBy', IEmployeeTableColumns.id) }}>id</div>
+                    <div onClick={() => { update('sortBy', IEmployeeTableColumns.name) }}>Name</div>
+                    <div onClick={() => { update('sortBy', IEmployeeTableColumns.login) }}>Login</div>
+                    <div onClick={() => { update('sortBy', IEmployeeTableColumns.salary) }}>Salary</div>
                     <div>Action</div>
                 </div>
                 {employees.map(row => {
