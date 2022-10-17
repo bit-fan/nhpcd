@@ -1,0 +1,47 @@
+.filter-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+
+    .boundary-wrapper {
+        flex: 1;
+        display: flex;
+        align-items: center;
+
+        &>div:first-child {
+            width: 40px;
+        }
+
+        .boundary-input-wrapper {
+            border: solid 1px lightgray;
+            flex: 1;
+            height: 40px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+
+            .range-label {
+                padding: 10px;
+
+                &> :first-child {
+                    font-weight: 400;
+                    color: lightgray;
+                    font-size: 10px;
+                }
+
+                &> :nth-child(2) {
+                    font-weight: 600;
+                    color: darkgray;
+                    font-size: 12px;
+                }
+            }
+
+            input {
+                border: none;
+                height: 80%;
+            }
+        }
+    }
+
+}

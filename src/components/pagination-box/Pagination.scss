@@ -25,6 +25,8 @@
         border: solid 2px gray;
         border-radius: 10px;
         display: flex;
+        gap: 5px;
+        align-items: center;
 
         &>* {
             border-left: solid 1px gray;

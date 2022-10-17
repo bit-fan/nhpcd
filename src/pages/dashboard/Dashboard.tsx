@@ -5,6 +5,7 @@ import User from "../../components/user/User";
 import { fetchEmployeeData, IEmployeeData } from "../../services/employee";
 import { DEFAULT_PAGE_SIZE } from "../../setting/const";
 import './Dashboard.scss';
+import Filter, { IFilterValues } from "./Filter/Filter";
 
 export enum IEmployeeTableColumns {
     id = 'id',
@@ -31,6 +32,7 @@ const Dashboard: React.FC = () => {
     const [employeeData, setEmployeeData] = useState<IEmployeeData[]>([]);
     const [employeeForDisplay, setEmployeeForDisply] = useState<any>([]);
     const [tableProp, setTableProp] = useState<IEmployeeTable>(defaultTableProp);
+    const [filterValues, setFilterValues] = useState<IFilterValues>();
     const updateTablePaging = (key: 'curPage' | 'pageSize', val: number) => {
         console.log('to change', key, val);
         if (key === 'curPage') {
@@ -71,13 +73,27 @@ const Dashboard: React.FC = () => {
         console.log('new prop', tableProp);
         const startIdx = tableProp.pageSize * (tableProp.curPage - 1);
         const endIdx = tableProp.pageSize * tableProp.curPage;
-        const showEmp = employeeData.sort((a: IEmployeeData, b: IEmployeeData) => {
-            if (a[tableProp.sortBy] > b[tableProp.sortBy]) {
-                return -tableProp.order;
-            } else if (a[tableProp.sortBy] < b[tableProp.sortBy]) {
-                return tableProp.order;
-            } else return 0;
-        }).slice(startIdx, endIdx);
+        const showEmp = employeeData
+            // filter range first
+            .filter(emp => {
+                if (filterValues?.lower && emp.salary < filterValues.lower) {
+                    return false;
+                }
+                if (filterValues?.upper && emp.salary > filterValues.upper) {
+                    return false;
+                }
+                return true;
+            })
+            // add sorting column and direction
+            .sort((a: IEmployeeData, b: IEmployeeData) => {
+                if (a[tableProp.sortBy] > b[tableProp.sortBy]) {
+                    return -tableProp.order;
+                } else if (a[tableProp.sortBy] < b[tableProp.sortBy]) {
+                    return tableProp.order;
+                } else return 0;
+            })
+            // add paging
+            .slice(startIdx, endIdx);
         setEmployeeForDisply(showEmp);
     }
     const getEmployeeData = async () => {
@@ -90,10 +106,13 @@ const Dashboard: React.FC = () => {
 
     useEffect(() => {
         updateEmployeeForShow()
-    }, [employeeData, tableProp])
+    }, [employeeData, tableProp, filterValues])
+    //whenever source of employee change, sorting change, range change, table content should be updated
+
     return <div className="dashboard-container">
         <User />
         <div className="employee-wrapper">
+            <Filter values={filterValues} updateValue={setFilterValues} />
             <PagingBox
                 total={employeeData.length}
                 tableProp={tableProp}

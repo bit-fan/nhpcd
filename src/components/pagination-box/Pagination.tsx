@@ -21,15 +21,15 @@ const PagingBox = ({ total, tableProp, update }: {
         </div> records per page
 
         <div className="page-numbers">
-            <div onClick={() => { update('curPage', 1) }}>1</div>
-            {tableProp.curPage > 1 && <div onClick={() => { update('curPage', tableProp.curPage - 1) }}>{'<'}</div>}
-            Page Number:<select value={tableProp.curPage} onChange={p => { update('curPage', Number(p.target.value)) }}>
+            <a onClick={() => { update('curPage', 1) }}>1</a>
+            {tableProp.curPage > 1 && <a onClick={() => { update('curPage', tableProp.curPage - 1) }}>{'<'}</a>}
+            Jump to:<select value={tableProp.curPage} onChange={p => { update('curPage', Number(p.target.value)) }}>
                 {pageList.map(p => {
                     return <option value={p}>{p}</option>
                 })}
             </select>
-            {tableProp.curPage < maxPage && <div onClick={() => { update('curPage', tableProp.curPage + 1) }}>{'>'}</div>}
-            <div onClick={() => { update('curPage', maxPage) }}>{maxPage}</div>
+            {tableProp.curPage < maxPage && <a onClick={() => { update('curPage', tableProp.curPage + 1) }}>{'>'}</a>}
+            <a onClick={() => { update('curPage', maxPage) }}>{maxPage}</a>
         </div></div>
 }
 export default PagingBox;
