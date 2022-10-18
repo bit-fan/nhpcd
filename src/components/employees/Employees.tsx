@@ -28,9 +28,9 @@ const Employees: React.FC<{
         return <div>
             <div onClick={() => { updateCheck(colKey) }}>{title}
                 {/* downarrow */}
-                {colKey === tableProp.sortBy && tableProp.order === 1 && <>&#8595;</>}
+                {colKey === tableProp.sortBy && tableProp.order === 1 && <span className="icon-sort">&#8595;</span>}
                 {/* up arrow */}
-                {colKey === tableProp.sortBy && tableProp.order === -1 && <>&#8593;</>}
+                {colKey === tableProp.sortBy && tableProp.order === -1 && <span className="icon-sort">&#8593;</span>}
             </div>
         </div>
     }

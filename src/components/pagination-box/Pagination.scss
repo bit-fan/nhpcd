@@ -3,6 +3,7 @@
     align-items: center;
     justify-content: flex-end;
     gap: 0.5rem;
+    font-size: 0.75rem;
 
     .page-size {
         border: solid 2px gray;
@@ -15,9 +16,10 @@
         }
 
         &>* {
+            flex: 1;
             border-left: solid 1px gray;
             border-right: solid 1px gray;
-            padding: 0.5rem;
+            padding: 0.25rem;
         }
     }
 
@@ -32,9 +34,10 @@
         }
 
         &>* {
+            flex: 1;
             border-left: solid 1px gray;
             border-right: solid 1px gray;
-            padding: 0.5rem;
+            padding: 0.25rem 0.5rem;
         }
     }
 }

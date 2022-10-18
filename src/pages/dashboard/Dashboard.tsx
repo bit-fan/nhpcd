@@ -31,6 +31,7 @@ const defaultTableProp: IEmployeeTable = {
 const Dashboard: React.FC = () => {
     const [employeeData, setEmployeeData] = useState<IEmployeeData[]>([]);
     const [employeeForDisplay, setEmployeeForDisply] = useState<any>([]);
+    const [numFilteredEmployee, setNumFilteredEmployee] = useState<number>(0);
     const [tableProp, setTableProp] = useState<IEmployeeTable>(defaultTableProp);
     const [filterValues, setFilterValues] = useState<IFilterValues>();
     const updateTablePaging = (key: 'curPage' | 'pageSize', val: number) => {
@@ -73,8 +74,9 @@ const Dashboard: React.FC = () => {
         console.log('new prop', tableProp);
         const startIdx = tableProp.pageSize * (tableProp.curPage - 1);
         const endIdx = tableProp.pageSize * tableProp.curPage;
-        const showEmp = employeeData
-            // filter range first
+
+        // filter range first
+        const filteredEmployee = employeeData
             .filter(emp => {
                 if (filterValues?.lower && emp.salary < filterValues.lower) {
                     return false;
@@ -83,8 +85,12 @@ const Dashboard: React.FC = () => {
                     return false;
                 }
                 return true;
-            })
-            // add sorting column and direction
+            });
+        setNumFilteredEmployee(filteredEmployee.length);
+
+
+        // add sorting column and direction
+        const showEmp = filteredEmployee
             .sort((a: IEmployeeData, b: IEmployeeData) => {
                 if (a[tableProp.sortBy] > b[tableProp.sortBy]) {
                     return -tableProp.order;
@@ -114,7 +120,7 @@ const Dashboard: React.FC = () => {
         <div className="employee-wrapper">
             <Filter values={filterValues} updateValue={setFilterValues} />
             <PagingBox
-                total={employeeForDisplay.length}
+                total={numFilteredEmployee}
                 tableProp={tableProp}
                 update={(key, val) => updateTablePaging(key, val)} />
             <Employees
@@ -123,7 +129,7 @@ const Dashboard: React.FC = () => {
                 update={(key, val) => updateTableFiltering(key, val)}
                 onEmployeeDataChange={() => { getEmployeeData() }} />
             <PagingBox
-                total={employeeForDisplay.length}
+                total={numFilteredEmployee}
                 tableProp={tableProp}
                 update={(key, val) => updateTablePaging(key, val)} />
         </div>

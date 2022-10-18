@@ -1,7 +1,19 @@
+@import '../../styles/app.scss';
+
 .dashboard-container {
+
+    @include desktop {
+        display: flex;
+        flex-direction: row;
+    }
 
     // color: pink;
     .employee-wrapper {
         padding: 1rem 2rem;
+
+        @include desktop {
+            flex: 1;
+            // flex-direction: row;
+        }
     }
 }

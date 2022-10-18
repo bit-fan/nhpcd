@@ -15,13 +15,14 @@ const User: React.FC = () => {
     }
     return <div className='user-container'>
         <img className='user-icon' src='' />
-        {'username'}
+        <div className='user-name' >{'username'}</div>
         <div className='horizontal-gap' />
         <div className='menu-icon' >
             <div onClick={() => { setShowFunctionListMenu(!showFunctionListMenu) }}>&#9776;</div>
             {showFunctionListMenu &&
                 <div className='functions-wrapper' ><FunctionList /></div>}
         </div>
+        <div className='desktop-only-flex'><FunctionList /></div>
 
     </div>
 }

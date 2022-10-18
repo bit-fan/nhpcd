@@ -1,3 +1,5 @@
+@import '../../styles/app.scss';
+
 .title {
     text-align: left;
     font-weight: 600;
@@ -12,7 +14,12 @@
         margin-bottom: 1rem;
         border-radius: 1rem;
         background-color: lightgrey;
-        padding: 1rem;
+        padding: 0.5rem;
+
+        @include desktop {
+            padding: 1rem;
+        }
+
 
         .id-wrapper {
             display: flex;
@@ -27,7 +34,6 @@
 
         .action-wrapper>* {
             margin-left: 0.5rem;
-            font-size: 1.25rem;
         }
     }
 
@@ -35,6 +41,11 @@
         color: black;
         font-weight: 600;
         margin: 0.5rem 0;
+
+        .icon-sort {
+            font-size: 1.5rem;
+            color: blue
+        }
     }
 
     &>* {

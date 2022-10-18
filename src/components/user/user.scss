@@ -1,3 +1,5 @@
+@import '../../styles/app.scss';
+
 .user-container {
     display: flex;
     height: 2rem;
@@ -6,17 +8,44 @@
     align-items: center;
     background-color: gray;
 
+    @include desktop {
+        height: initial;
+        min-height: 100%;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem;
+        flex: 0;
+        margin-bottom: 0;
+    }
+
     .user-icon {
         width: 2rem;
         height: 2rem;
+
+        @include desktop {
+            width: 4rem;
+            height: 4rem;
+        }
+    }
+
+    .user-name {
+        color: white;
     }
 
     .horizontal-gap {
         flex-grow: 1;
+
+        @include desktop {
+            display: none;
+        }
     }
 
     .menu-icon {
         align-self: flex-end;
+
+        @include desktop {
+            display: none;
+        }
     }
 
     .functions-wrapper {
@@ -25,16 +54,27 @@
         right: 1rem;
         background-color: grey;
 
-        ul {
-            padding-left: 0;
-        }
 
-        & li {
-            list-style: none;
-        }
     }
 
-    .function-list {
-        // display: none;
+    ul {
+        padding-left: 0;
+    }
+
+    & li {
+        white-space: nowrap;
+        list-style: none;
+        margin-bottom: 1rem;
+        color: palegoldenrod;
+    }
+
+    .desktop-only-flex {
+        display: none;
+
+        @include desktop {
+            display: flex;
+        }
+
+        .function-list {}
     }
 }

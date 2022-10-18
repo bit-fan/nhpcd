@@ -1,3 +1,5 @@
+@import '../../../styles/app.scss';
+
 .filter-wrapper {
     display: flex;
     flex-direction: column;
@@ -5,6 +7,11 @@
     align-items: center;
     justify-content: space-between;
     margin: 1rem 0 2rem;
+
+    @include desktop {
+        flex-direction: row;
+        gap: 0;
+    }
 
     .boundary-wrapper {
         flex: 1;
@@ -29,11 +36,12 @@
             flex: 1;
             height: 2.5rem;
             display: flex;
-            gap: 1rem;
+            gap: 0.5rem;
             align-items: center;
 
             .range-label {
                 padding: 1rem;
+                white-space: nowrap;
 
                 &> :first-child {
                     font-weight: 400;
@@ -53,6 +61,7 @@
             input {
                 border: none;
                 height: 80%;
+                width: 100%;
             }
         }
     }

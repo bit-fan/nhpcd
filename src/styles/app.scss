@@ -1,0 +1,7 @@
+$desktopWidth: 768px;
+
+@mixin desktop {
+    @media screen and (min-width: $desktopWidth) {
+        @content;
+    }
+}
