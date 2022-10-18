@@ -114,15 +114,16 @@ const Dashboard: React.FC = () => {
         <div className="employee-wrapper">
             <Filter values={filterValues} updateValue={setFilterValues} />
             <PagingBox
-                total={employeeData.length}
+                total={employeeForDisplay.length}
                 tableProp={tableProp}
                 update={(key, val) => updateTablePaging(key, val)} />
             <Employees
                 employees={employeeForDisplay}
                 tableProp={tableProp}
-                update={(key, val) => updateTableFiltering(key, val)} />
+                update={(key, val) => updateTableFiltering(key, val)}
+                onEmployeeDataChange={() => { getEmployeeData() }} />
             <PagingBox
-                total={employeeData.length}
+                total={employeeForDisplay.length}
                 tableProp={tableProp}
                 update={(key, val) => updateTablePaging(key, val)} />
         </div>

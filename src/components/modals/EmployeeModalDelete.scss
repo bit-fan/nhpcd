@@ -1,0 +1,8 @@
+@use './EmployeeModal.scss';
+
+.modal-body {
+    .modal-body-header {
+        color: red !important;
+        font-weight: bold;
+    }
+}
