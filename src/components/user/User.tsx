@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { userInfo } from '../../mocks/user';
 import UploadModal from '../uploadModal/UploadModal';
-import './User.scss';
+import './user.scss';
 
 const User: React.FC = () => {
     const [showFunctionListMenu, setShowFunctionListMenu] = useState(false);
