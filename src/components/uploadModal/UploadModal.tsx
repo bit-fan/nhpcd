@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { uploadEmployeeData } from '../../services/employee';
-import { ACCEPT_EMPLOYEE_FILE_TYPE, MAX_EMPLOYEE_FILE_SIZE, SERVERIP } from '../../setting/const';
+import { ACCEPT_EMPLOYEE_FILE_TYPE, MAX_EMPLOYEE_FILE_SIZE } from '../../setting/const';
 import { returnFileSize } from '../../util/util';
 import './UploadModal.scss';
 
@@ -18,10 +18,8 @@ const UploadModal = ({ onUploadCallback }: { onUploadCallback: () => void }) => 
         }
     }, [selectedFile])
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log('e', e.target);
         const target = e.target as HTMLInputElement;
         const file = target && target.files && target.files[0];
-        console.log(file);
         setSelectedFile(file);
     };
 
@@ -32,7 +30,6 @@ const UploadModal = ({ onUploadCallback }: { onUploadCallback: () => void }) => 
         if (status === 'ok') {
 
         } else {
-            console.log('data', data);
             setServerResponse(data);
         }
     };

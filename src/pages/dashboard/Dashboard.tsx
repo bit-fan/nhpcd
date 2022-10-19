@@ -5,7 +5,7 @@ import User from "../../components/user/User";
 import { fetchEmployeeData, IEmployeeData } from "../../services/employee";
 import { DEFAULT_PAGE_SIZE } from "../../setting/const";
 import './Dashboard.scss';
-import Filter, { IFilterValues } from "./Filter/Filter";
+import Filter, { IFilterValues } from "../../components/Filter/Filter";
 
 export enum IEmployeeTableColumns {
     id = 'id',
@@ -35,11 +35,9 @@ const Dashboard: React.FC = () => {
     const [tableProp, setTableProp] = useState<IEmployeeTable>(defaultTableProp);
     const [filterValues, setFilterValues] = useState<IFilterValues>();
     const updateFilterValue = (val: IFilterValues) => {
-        console.log('update filter', val);
         setFilterValues(val)
     }
     const updateTablePaging = (key: 'curPage' | 'pageSize', val: number) => {
-        console.log('to change', key, val);
         if (key === 'curPage') {
             setTableProp(p => {
                 return {
@@ -74,11 +72,19 @@ const Dashboard: React.FC = () => {
             })
         }
     }
-    const updateEmployeeForShow = () => {
-        console.log('new prop', tableProp, filterValues);
+    const getEmployeeData = async () => {
+        const data = await fetchEmployeeData();
+        setEmployeeData(data);
+    }
+
+    // fetch employee data when first launch
+    useEffect(() => {
+        getEmployeeData();
+    }, [])
+
+    useEffect(() => {
         const startIdx = tableProp.pageSize * (tableProp.curPage - 1);
         const endIdx = tableProp.pageSize * tableProp.curPage;
-
         // filter range first
         const filteredEmployee = employeeData
             .filter(emp => {
@@ -105,17 +111,6 @@ const Dashboard: React.FC = () => {
             // add paging
             .slice(startIdx, endIdx);
         setEmployeeForDisply(showEmp);
-    }
-    const getEmployeeData = async () => {
-        const data = await fetchEmployeeData();
-        setEmployeeData(data);
-    }
-    useEffect(() => {
-        getEmployeeData();
-    }, [])
-
-    useEffect(() => {
-        updateEmployeeForShow()
     }, [employeeData, tableProp, filterValues])
     //whenever source of employee change, sorting change, range change, table content should be updated
 

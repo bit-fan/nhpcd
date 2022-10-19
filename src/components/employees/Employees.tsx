@@ -12,14 +12,11 @@ const Employees: React.FC<{
     update: (colKey: 'sortBy' | 'order', val: IEmployeeTableColumns | 1 | -1) => void
     onEmployeeDataChange: () => void
 }> = ({ employees, tableProp, update, onEmployeeDataChange }) => {
-    console.log('employees', employees)
-
     const [selectedEmployee, setSelectedEmployee] = useState<IEmployeeData | undefined>(undefined);
     const [showModal, setShowModal] = useState<string | undefined>('');
     const updateCheck = (sortCol: IEmployeeTableColumns) => {
-        console.log('checking', sortCol, tableProp);
         if (sortCol === tableProp.sortBy) {
-            update('order', tableProp.order == 1 ? -1 : 1);
+            update('order', tableProp.order === 1 ? -1 : 1);
         } else {
             update('sortBy', sortCol);
         }
@@ -36,7 +33,7 @@ const Employees: React.FC<{
     }
     const EmployeeRow = ({ data }: { data: IEmployeeData }) => {
         return <>
-            <div className="id-wrapper"><img src={data.profile_pic} />{data.id}</div>
+            <div className="id-wrapper"><img src={data.profile_pic} alt='user profile img' />{data.id}</div>
             <div>{data.full_name}</div>
             <div>{data.login_id}</div>
             <div>{data.salary}</div>
@@ -48,25 +45,23 @@ const Employees: React.FC<{
     }
 
     const submitEditRequest = async (a: IEmployeeData) => {
-        const { status, data } = await editEmployeeData(a);
+        const { status } = await editEmployeeData(a);
         if (status === 'ok') {
             // successfully edited, close modal and update employee data
             setSelectedEmployee(undefined);
             setShowModal(undefined);
             onEmployeeDataChange();
-            console.log('edit done', data);
         } else {
 
         }
     }
     const submitDeleteRequest = async (a: IEmployeeData) => {
-        const { status, data } = await deleteEmployeeData(a);
+        const { status } = await deleteEmployeeData(a);
         if (status === 'ok') {
             // successfully deleted, close modal and update employee data
             setSelectedEmployee(undefined);
             setShowModal(undefined);
             onEmployeeDataChange();
-            console.log('del done', data);
         } else {
 
         }
