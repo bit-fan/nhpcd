@@ -9,16 +9,16 @@ import './Employees.scss';
 const Employees: React.FC<{
     employees: [],
     tableProp: IEmployeeTable,
-    update: (colKey: 'sortBy' | 'order', val: IEmployeeTableColumns | 1 | -1) => void
+    update: (key: IEmployeeTable) => void,
     onEmployeeDataChange: () => void
 }> = ({ employees, tableProp, update, onEmployeeDataChange }) => {
     const [selectedEmployee, setSelectedEmployee] = useState<IEmployeeData | undefined>(undefined);
     const [showModal, setShowModal] = useState<string | undefined>('');
     const updateCheck = (sortCol: IEmployeeTableColumns) => {
         if (sortCol === tableProp.sortBy) {
-            update('order', tableProp.order === 1 ? -1 : 1);
+            update({ ...tableProp, order: tableProp.order === 1 ? -1 : 1 });
         } else {
-            update('sortBy', sortCol);
+            update({ ...tableProp, sortBy: sortCol });
         }
     }
     const HeaderCol = ({ title, colKey }: { title: string, colKey: IEmployeeTableColumns }) => {

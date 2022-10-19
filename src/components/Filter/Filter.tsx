@@ -33,7 +33,7 @@ const Filter = ({ values, updateValue }: {
 
     useEffect(() => {
         updateValue({ lower: minValue, upper: maxValue })
-    }, [minValue, maxValue, updateValue]);
+    }, [minValue, maxValue]);
     return <div className='filter-wrapper'>
         <div className='boundary-wrapper'>
             <div className='icon'><div>&#x1F50E;&#xFE0F;</div></div>

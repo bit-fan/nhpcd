@@ -34,44 +34,7 @@ const Dashboard: React.FC = () => {
     const [numFilteredEmployee, setNumFilteredEmployee] = useState<number>(0);
     const [tableProp, setTableProp] = useState<IEmployeeTable>(defaultTableProp);
     const [filterValues, setFilterValues] = useState<IFilterValues>();
-    const updateFilterValue = (val: IFilterValues) => {
-        setFilterValues(val)
-    }
-    const updateTablePaging = (key: 'curPage' | 'pageSize', val: number) => {
-        if (key === 'curPage') {
-            setTableProp(p => {
-                return {
-                    ...p,
-                    curPage: val
-                }
-            })
-        } else if (key === 'pageSize') {
-            setTableProp(p => {
-                return {
-                    ...p,
-                    pageSize: val,
-                    curPage: 1// when page size changed, restore to first page
-                }
-            })
-        }
-    }
-    const updateTableFiltering = (key: 'sortBy' | 'order', val: IEmployeeTableColumns | number) => {
-        if (key === 'sortBy') {
-            setTableProp((p: any) => {
-                return {
-                    ...p,
-                    sortBy: val,
-                }
-            })
-        } else if (key === 'order') {
-            setTableProp((p: any) => {
-                return {
-                    ...p,
-                    order: val,
-                }
-            })
-        }
-    }
+
     const getEmployeeData = async () => {
         const data = await fetchEmployeeData();
         setEmployeeData(data);
@@ -117,20 +80,20 @@ const Dashboard: React.FC = () => {
     return <div className="dashboard-container">
         <User />
         <div className="employee-wrapper">
-            <Filter values={filterValues} updateValue={val => { updateFilterValue(val) }} />
+            <Filter values={filterValues} updateValue={val => { setFilterValues(val) }} />
             <PagingBox
                 total={numFilteredEmployee}
                 tableProp={tableProp}
-                update={(key, val) => updateTablePaging(key, val)} />
+                update={(newTableProp: IEmployeeTable) => setTableProp(newTableProp)} />
             <Employees
                 employees={employeeForDisplay}
                 tableProp={tableProp}
-                update={(key, val) => updateTableFiltering(key, val)}
+                update={(newTableProp: IEmployeeTable) => setTableProp(newTableProp)}
                 onEmployeeDataChange={() => { getEmployeeData() }} />
             <PagingBox
                 total={numFilteredEmployee}
                 tableProp={tableProp}
-                update={(key, val) => updateTablePaging(key, val)} />
+                update={(newTableProp: IEmployeeTable) => setTableProp(newTableProp)} />
         </div>
     </div>
 }

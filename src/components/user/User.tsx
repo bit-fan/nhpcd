@@ -5,7 +5,7 @@ import './user.scss';
 
 const User: React.FC = () => {
     const [showFunctionListMenu, setShowFunctionListMenu] = useState(false);
-    const [showUploadModal, setShowUploadModal] = useState(true);
+    const [showUploadModal, setShowUploadModal] = useState(false);
     const FunctionList = () => {
         return <div className='function-list'>
             <ul>
@@ -21,7 +21,7 @@ const User: React.FC = () => {
     }
     return <div className='user-container'>
         {showUploadModal && <UploadModal onUploadCallback={onUploadCallback} />}
-        <img className='user-icon' src={userInfo.profilePic} />
+        <img className='user-icon' src={userInfo.profilePic} alt="user pic" />
         <div className='user-name' >{userInfo.username}</div>
         <div className='horizontal-gap' />
         <div className='menu-icon' onBlur={() => { setShowFunctionListMenu(false) }}>

@@ -5,7 +5,7 @@ import './Pagination.scss';
 const PagingBox = ({ total, tableProp, update }: {
     total: number,
     tableProp: IEmployeeTable,
-    update: (key: 'pageSize' | 'curPage', val: number) => void
+    update: (key: IEmployeeTable) => void
 }) => {
 
     const maxPage = Math.ceil(total / tableProp.pageSize);
@@ -15,22 +15,45 @@ const PagingBox = ({ total, tableProp, update }: {
         <div className="page-size">
             {PAGES.map(p => {
                 return <div
+                    key={p}
                     className={p === tableProp.pageSize ? 'selected-page' : ''}
-                    onClick={() => { update('pageSize', p.valueOf()) }}
+                    onClick={() => {
+                        // when change page size, reset to first page
+                        update({ ...tableProp, pageSize: p.valueOf(), curPage: 1 })
+                    }}
                 >{p}</div>
             })}
         </div> records per page. Go to
 
         <div className="page-numbers">
-            <a onClick={() => { update('curPage', 1) }}>1</a>
-            {tableProp.curPage > 1 && <a onClick={() => { update('curPage', tableProp.curPage - 1) }}>{'prev'}</a>}
-            <select value={tableProp.curPage} onChange={p => { update('curPage', Number(p.target.value)) }}>
+            {/* first page */}
+            <a onClick={() => {
+                update({ ...tableProp, curPage: 1 })
+            }}>1</a>
+
+            {/* prev page */}
+            {tableProp.curPage > 1 && <a onClick={() => {
+                update({ ...tableProp, curPage: tableProp.curPage - 1 })
+            }}>{'prev'}</a>}
+
+            {/* go to page */}
+            <select value={tableProp.curPage} onChange={p => {
+                update({ ...tableProp, curPage: Number(p.target.value) })
+            }}>
                 {pageList.map(p => {
-                    return <option value={p}>{p}</option>
+                    return <option key={p} value={p}>{p}</option>
                 })}
             </select>
-            {tableProp.curPage < maxPage && <a onClick={() => { update('curPage', tableProp.curPage + 1) }}>{'next'}</a>}
-            <a onClick={() => { update('curPage', maxPage) }}>{maxPage}</a>
+
+            {/* next page */}
+            {tableProp.curPage < maxPage && <a onClick={() => {
+                update({ ...tableProp, curPage: tableProp.curPage + 1 })
+            }}>{'next'}</a>}
+
+            {/* last page */}
+            <a onClick={() => {
+                update({ ...tableProp, curPage: maxPage })
+            }}>{maxPage}</a>
         </div>
     </div>
 }
