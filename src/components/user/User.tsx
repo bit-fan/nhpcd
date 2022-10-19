@@ -24,14 +24,14 @@ const User: React.FC = () => {
         <img className='user-icon' src={userInfo.profilePic} alt="user pic" />
         <div className='user-name' >{userInfo.username}</div>
         <div className='horizontal-gap' />
-        <div className='menu-icon' onBlur={() => { setShowFunctionListMenu(false) }}>
-            <div onClick={() => { setShowFunctionListMenu(!showFunctionListMenu) }}>&#9776;</div>
+        <div className='menu-icon' >
+            <div data-testid="mobile-menu-icon" onClick={() => { setShowFunctionListMenu(!showFunctionListMenu) }}>&#9776;</div>
             {showFunctionListMenu &&
                 <div className='functions-wrapper' ><FunctionList /></div>}
         </div>
         <div className='desktop-only-flex'><FunctionList /></div>
 
-    </div>
+    </div >
 }
 
 export default User

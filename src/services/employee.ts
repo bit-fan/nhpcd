@@ -9,7 +9,6 @@ export type IEmployeeData = {
     profile_pic?: string
 }
 
-
 export const fetchEmployeeData = async () => {
 
     // this is to avoid limited free API calls available in beeceptor
@@ -29,7 +28,7 @@ export const editEmployeeData = async (params: IEmployeeData) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(params)
     };
-    const response = '' || await fetch(`${SERVERIP}/employees/${params.id}`, requestOptions)
+    const response = await fetch(`${SERVERIP}/employees/${params.id}`, requestOptions)
         .then(d => d.json())
         .then(data => {
             return data;
@@ -46,7 +45,7 @@ export const deleteEmployeeData = async (params: IEmployeeData) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(params)
     };
-    const response = '' || await fetch(`${SERVERIP}/employees/${params.id}`, requestOptions)
+    const response = await fetch(`${SERVERIP}/employees/${params.id}`, requestOptions)
         .then(d => d.json())
         .then(data => {
             return data;
@@ -70,7 +69,6 @@ export const uploadEmployeeData = async (formData: FormData) => {
     )
         .then((r) => r.json())
         .then((result) => {
-            console.log('Success:', result);
             return result;
         })
         .catch((error) => {

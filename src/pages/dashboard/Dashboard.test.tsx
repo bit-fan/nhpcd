@@ -8,25 +8,28 @@ const mockEmployeesData = sampleEmployeesData;
 
 jest.mock('../../services/employee', () => {
     const originalModule = jest.requireActual('../../services/employee');
-
-    //Mock the default export and named export 'foo'
     return {
         __esModule: true,
         ...originalModule,
         fetchEmployeeData: async () => {
             return Promise.resolve({ status: 'ok', data: mockEmployeesData });
         },
+        editEmployeeData: async () => {
+            return Promise.resolve({ status: 'ok', data: mockEmployeesData });
+        },
+        deleteEmployeeData: async () => {
+            return Promise.resolve({ status: 'ok', data: mockEmployeesData });
+        },
     };
 });
-
-const mockUpdate = jest.fn();
-const mockOnEmployeeChange = jest.fn();
 
 test('test range filter', async () => {
     await act(async () => { render(<Dashboard />) });
     expect(screen.queryByText(sampleEmployeesData[0].full_name)).toBeVisible();
-    fireEvent.change(screen.getByTestId('min-range'), { target: { value: 8500 } });
-    fireEvent.change(screen.getByTestId('max-range'), { target: { value: 9000 } });
+    await act(async () => {
+        fireEvent.change(screen.getByTestId('min-range'), { target: { value: 8500 } });
+        fireEvent.change(screen.getByTestId('max-range'), { target: { value: 9000 } });
+    });
     const pageClass = document.body.querySelector('.page-container');
     expect(pageClass).toHaveTextContent('Total 19 records, showing51015 records per page. Go to112next2');
 })
@@ -41,8 +44,13 @@ test('test sort col', async () => {
     fireEvent.click(screen.getByTestId('table-sort-col-id'));
     expect(screen.queryByText(sampleEmployeesData[0].full_name)).toBeVisible();
     expect(screen.queryByText(sampleEmployeesData[99].full_name)).toBeNull();
-    // const pageClass = document.body.querySelector('.page-container');
-    // expect(pageClass).toHaveTextContent('Total 19 records, showing51015 records per page. Go to112345next5');
+
+    fireEvent.click(screen.getByTestId('table-sort-col-Salary'));
+    expect(screen.queryByText('8008.74')).toBeVisible();
+    expect(screen.queryByText('9942.42')).toBeNull();
+    fireEvent.click(screen.getByTestId('table-sort-col-Salary'));
+    expect(screen.queryByText('8008.74')).toBeNull();
+    expect(screen.queryByText('9942.42')).toBeVisible();
 });
 
 test('test page size', async () => {
@@ -91,4 +99,36 @@ test('test go to page', async () => {
     expect(screen.queryByText(sampleEmployeesData[19].full_name)).toBeVisible();
     expect(screen.queryByText(sampleEmployeesData[20].full_name)).toBeNull();
 
+})
+
+test('test edit modal', async () => {
+    await act(async () => { render(<Dashboard />) });
+    expect(document.querySelector('.modal-employee')).toBeNull();
+    fireEvent.click(screen.getAllByTestId('employee-row-icon-edit')[0]);
+    expect(document.querySelector('.modal-employee')).toBeVisible();
+    await act(async () => { fireEvent.click(screen.getByText('Update')); });
+})
+
+test('test edit modal cancel', async () => {
+    await act(async () => { render(<Dashboard />) });
+    expect(document.querySelector('.modal-employee')).toBeNull();
+    fireEvent.click(screen.getAllByTestId('employee-row-icon-edit')[0]);
+    expect(document.querySelector('.modal-employee')).toBeVisible();
+    fireEvent.click(screen.getByText('Cancel'));
+})
+
+test('test delete modal', async () => {
+    await act(async () => { render(<Dashboard />) });
+    expect(document.querySelector('.modal-employee')).toBeNull();
+    fireEvent.click(screen.getAllByTestId('employee-row-icon-delete')[0]);
+    expect(document.querySelector('.modal-employee')).toBeVisible();
+    await act(async () => { fireEvent.click(screen.getByTestId('modal-button-delete')); });
+})
+
+test('test delete modal cancel fn', async () => {
+    await act(async () => { render(<Dashboard />) });
+    expect(document.querySelector('.modal-employee')).toBeNull();
+    fireEvent.click(screen.getAllByTestId('employee-row-icon-delete')[0]);
+    expect(document.querySelector('.modal-employee')).toBeVisible();
+    fireEvent.click(screen.getByText('Cancel'));
 })

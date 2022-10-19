@@ -51,3 +51,10 @@ test('simulate file upload invalid', async () => {
     fireEvent.click(screen.getByTestId('upload-modal-upload-button'));
     // await waitFor(() => expect(queryByTestId('handler')).toBeTruthy());
 })
+
+test('test mobile view', () => {
+    window = Object.assign(window, { innerWidth: 5000 });
+    render(<User />);
+    expect(document.querySelector('.menu-icon')).toBeVisible();
+    fireEvent.click(screen.getByTestId('mobile-menu-icon'));
+})

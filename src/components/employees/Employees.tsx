@@ -38,8 +38,8 @@ const Employees: React.FC<{
             <div>{data.login_id}</div>
             <div>{data.salary}</div>
             <div className="action-wrapper">
-                <span onClick={() => { setShowModal('edit'); setSelectedEmployee(data) }}>&#9998;</span>
-                <span onClick={() => { setShowModal('delete'); setSelectedEmployee(data) }}>&#10006;</span>
+                <span data-testid='employee-row-icon-edit' onClick={() => { setShowModal('edit'); setSelectedEmployee(data) }}>&#9998;</span>
+                <span data-testid='employee-row-icon-delete' onClick={() => { setShowModal('delete'); setSelectedEmployee(data) }}>&#10006;</span>
             </div>
         </>
     }
