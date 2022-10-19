@@ -4,7 +4,8 @@ export type IFilterValues = {
     lower?: number;
     upper?: number;
 }
-const RangeBoundaryBlock = ({ text, value, onChange }: {
+const RangeBoundaryBlock = ({ testId, text, value, onChange }: {
+    testId: string,
     text: string,
     value?: number,
     onChange: (e: ChangeEvent) => void;
@@ -17,6 +18,7 @@ const RangeBoundaryBlock = ({ text, value, onChange }: {
         {/* &#36; is dollar symbol */}
         <div>&#36;</div>
         <input
+            data-testid={testId}
             value={value}
             onChange={(e: ChangeEvent) => onChange(e)}
         />
@@ -38,6 +40,7 @@ const Filter = ({ values, updateValue }: {
         <div className='boundary-wrapper'>
             <div className='icon'><div>&#x1F50E;&#xFE0F;</div></div>
             <RangeBoundaryBlock
+                testId='min-range'
                 text='Minimum Salary'
                 onChange={(e: any) => setMinValue(Number(e.target.value))}
                 value={minValue} />
@@ -45,6 +48,7 @@ const Filter = ({ values, updateValue }: {
         <div className='boundary-wrapper'>
             <div>-</div>
             <RangeBoundaryBlock
+                testId='max-range'
                 text='Maximum Salary'
                 onChange={(e: any) => setMaxValue(Number(e.target.value))}
                 value={maxValue} />

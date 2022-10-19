@@ -1,6 +1,6 @@
 import { IEmployeeData } from "../services/employee";
 
-export const sampleData: IEmployeeData[] = [
+export const sampleEmployeesData: IEmployeeData[] = [
     { "id": 1, "full_name": "Corrianne Graffham", "login_id": "cgraffham0", "salary": 8214.74, "profile_pic": "http://dummyimage.com/156x100.png/cc0000/ffffff" },
     { "id": 2, "full_name": "Randolf Kaesmakers", "login_id": "rkaesmakers1", "salary": 9189.6, "profile_pic": "http://dummyimage.com/108x100.png/ff4444/ffffff" },
     { "id": 3, "full_name": "Nobe Todarini", "login_id": "ntodarini2", "salary": 9217.6, "profile_pic": "http://dummyimage.com/216x100.png/5fa2dd/ffffff" },

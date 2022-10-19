@@ -7,7 +7,7 @@ import './Employees.scss';
 
 
 const Employees: React.FC<{
-    employees: [],
+    employees: IEmployeeData[],
     tableProp: IEmployeeTable,
     update: (key: IEmployeeTable) => void,
     onEmployeeDataChange: () => void
@@ -23,7 +23,7 @@ const Employees: React.FC<{
     }
     const HeaderCol = ({ title, colKey }: { title: string, colKey: IEmployeeTableColumns }) => {
         return <div>
-            <div onClick={() => { updateCheck(colKey) }}>{title}
+            <div onClick={() => { updateCheck(colKey) }} data-testid={`table-sort-col-${title}`}>{title}
                 {/* downarrow */}
                 {colKey === tableProp.sortBy && tableProp.order === 1 && <span className="icon-sort">&#8595;</span>}
                 {/* up arrow */}

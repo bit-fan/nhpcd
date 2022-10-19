@@ -2,7 +2,7 @@ import { ReactNode } from "react"
 
 export const ModalTitle: React.FC<{ title: string, onClickClose?: () => void }> = ({ title, onClickClose }) => {
     return <div className='modal-title'>
-        <div className="modal-title-close" onClick={() => onClickClose && onClickClose()}>X</div>
+        <div data-testid='close-icon' className="modal-title-close" onClick={() => onClickClose && onClickClose()}>X</div>
         <div className="modal-title-text">
             {title}
         </div>

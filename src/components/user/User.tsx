@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { userInfo } from '../../mocks/user';
 import UploadModal from '../uploadModal/UploadModal';
-import './user.scss';
+import './User.scss';
 
 const User: React.FC = () => {
     const [showFunctionListMenu, setShowFunctionListMenu] = useState(false);
@@ -9,7 +9,7 @@ const User: React.FC = () => {
     const FunctionList = () => {
         return <div className='function-list'>
             <ul>
-                <li onClick={() => { setShowFunctionListMenu(false); setShowUploadModal(true) }}>Upload Document</li>
+                <li data-testid='user-button-upload' onClick={() => { setShowFunctionListMenu(false); setShowUploadModal(true) }}>Upload Document</li>
                 <li>Func 2 to be added</li>
                 <li>Func 3 to be added</li>
                 <li>Func 4 to be added</li>

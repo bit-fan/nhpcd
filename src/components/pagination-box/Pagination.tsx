@@ -15,6 +15,7 @@ const PagingBox = ({ total, tableProp, update }: {
         <div className="page-size">
             {PAGES.map(p => {
                 return <div
+                    data-testid={`pagesize-${p}`}
                     key={p}
                     className={p === tableProp.pageSize ? 'selected-page' : ''}
                     onClick={() => {
@@ -27,17 +28,17 @@ const PagingBox = ({ total, tableProp, update }: {
 
         <div className="page-numbers">
             {/* first page */}
-            <a onClick={() => {
+            <a data-testid='goto-page-first' onClick={() => {
                 update({ ...tableProp, curPage: 1 })
             }}>1</a>
 
             {/* prev page */}
-            {tableProp.curPage > 1 && <a onClick={() => {
+            {tableProp.curPage > 1 && <a data-testid='goto-page-prev' onClick={() => {
                 update({ ...tableProp, curPage: tableProp.curPage - 1 })
             }}>{'prev'}</a>}
 
             {/* go to page */}
-            <select value={tableProp.curPage} onChange={p => {
+            <select data-testid='goto-page-number' value={tableProp.curPage} onChange={p => {
                 update({ ...tableProp, curPage: Number(p.target.value) })
             }}>
                 {pageList.map(p => {
@@ -46,12 +47,12 @@ const PagingBox = ({ total, tableProp, update }: {
             </select>
 
             {/* next page */}
-            {tableProp.curPage < maxPage && <a onClick={() => {
+            {tableProp.curPage < maxPage && <a data-testid='goto-page-next' onClick={() => {
                 update({ ...tableProp, curPage: tableProp.curPage + 1 })
             }}>{'next'}</a>}
 
             {/* last page */}
-            <a onClick={() => {
+            <a data-testid='goto-page-last' onClick={() => {
                 update({ ...tableProp, curPage: maxPage })
             }}>{maxPage}</a>
         </div>

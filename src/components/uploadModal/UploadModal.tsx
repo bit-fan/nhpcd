@@ -28,9 +28,10 @@ const UploadModal = ({ onUploadCallback }: { onUploadCallback: () => void }) => 
         formData.append('File', selectedFile!);
         const { status, data } = await uploadEmployeeData(formData);
         if (status === 'ok') {
-
+            // handle successful upload
         } else {
             setServerResponse(data);
+            // show server response message for invalid upload
         }
     };
     return <div className="upload-modal-container">
@@ -41,7 +42,7 @@ const UploadModal = ({ onUploadCallback }: { onUploadCallback: () => void }) => 
         {!serverResponse && <div className='modal-content'>
             <label htmlFor="fileinput">Choose csv file to upload, (file size {'<'} 2MB) </label>
 
-            <input type="file" name="file" accept={ACCEPT_EMPLOYEE_FILE_TYPE} onChange={changeHandler} />
+            <input data-testid="file-upload-input" type="file" name="file" accept={ACCEPT_EMPLOYEE_FILE_TYPE} onChange={changeHandler} />
             {selectedFile ? (
                 <div className='file-info'>
                     <p>File name: <b>{selectedFile.name}</b></p>
@@ -70,8 +71,8 @@ const UploadModal = ({ onUploadCallback }: { onUploadCallback: () => void }) => 
 
         {serverResponse && <>{serverResponse}</>}
         <div className='modal-footer'>
-            <button onClick={() => { onUploadCallback() }}>Cancel</button>
-            <button disabled={!selectedFile || isFileInvalid} onClick={handleSubmission}>Submit</button>
+            <button data-testid='upload-modal-close-button' onClick={() => { onUploadCallback() }}>Cancel</button>
+            <button data-testid='upload-modal-upload-button' disabled={!selectedFile || isFileInvalid} onClick={handleSubmission}>Submit</button>
         </div>
 
     </div >

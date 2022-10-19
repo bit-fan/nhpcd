@@ -1,4 +1,4 @@
-import { sampleData } from "../mocks/employees";
+import { sampleEmployeesData } from "../mocks/employees";
 import { SERVERIP } from "../setting/const";
 
 export type IEmployeeData = {
@@ -20,7 +20,7 @@ export const fetchEmployeeData = async () => {
     //         return data;
     //     });
     // return data;
-    return Promise.resolve(sampleData);
+    return Promise.resolve({ status: 'ok', data: sampleEmployeesData });
 }
 
 export const editEmployeeData = async (params: IEmployeeData) => {
@@ -77,5 +77,5 @@ export const uploadEmployeeData = async (formData: FormData) => {
             console.error('Error:', error);
         });
     // returned status should be updated according to API response
-    return { status: 'ok', data: 'haha' };
+    return { status: 'ok', data: 'dummy data' };
 }

@@ -21,7 +21,7 @@ export type IEmployeeTable = {
     order: -1 | 1
 }
 
-const defaultTableProp: IEmployeeTable = {
+export const defaultTableProp: IEmployeeTable = {
     curPage: 1,
     pageSize: DEFAULT_PAGE_SIZE,
     sortBy: IEmployeeTableColumns.id,
@@ -36,8 +36,8 @@ const Dashboard: React.FC = () => {
     const [filterValues, setFilterValues] = useState<IFilterValues>();
 
     const getEmployeeData = async () => {
-        const data = await fetchEmployeeData();
-        setEmployeeData(data);
+        const { status, data } = await fetchEmployeeData();
+        setEmployeeData(status === 'ok' ? data : []);
     }
 
     // fetch employee data when first launch

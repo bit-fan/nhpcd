@@ -3,13 +3,10 @@ import { ModalBody, ModalFooter, ModalTitle } from './EmployeeModal'
 import './EmployeeModalDelete.scss'
 
 export const EmployeeModalDelete: React.FC<{
-    employeeInfo?: IEmployeeData,
+    employeeInfo: IEmployeeData,
     onDelete: (a: IEmployeeData) => void,
     onCancel: () => void
 }> = ({ employeeInfo, onCancel, onDelete }) => {
-    if (!employeeInfo) {
-        return <></>
-    }
     return <div className="modal-employee">
         <ModalTitle title="Delete" onClickClose={() => onCancel()} />
         <ModalBody title={`Are you confirm to delete Employee ${employeeInfo.id} ?`}>
@@ -28,7 +25,7 @@ export const EmployeeModalDelete: React.FC<{
         </ModalBody>
         <ModalFooter>
             <button onClick={() => onCancel()}>Cancel</button>
-            <button onClick={() => onDelete(employeeInfo)}>Delete</button>
+            <button data-testid='modal-button-delete' onClick={() => onDelete(employeeInfo)}>Delete</button>
         </ModalFooter>
 
     </div>
