@@ -1,0 +1,54 @@
+$modal-gap: 1rem;
+
+.upload-modal-container {
+    position: fixed;
+    width: 80%;
+    left: 10%;
+    top: 10%;
+    padding: $modal-gap;
+    background: paleturquoise;
+    border-radius: 1rem;
+
+    .modal-title {
+        // margin-bottom: $modal-gap;
+        // padding-bottom: $modal-gap;
+    }
+
+    .modal-content {
+        padding: $modal-gap;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: $modal-gap;
+
+        .file-info {
+            font-size: 0.75rem;
+            width: 80%;
+            text-align: left;
+            border: solid 2px grey;
+            border-radius: 0.5rem;
+            padding: 0 $modal-gap;
+        }
+
+        .file-error-block {
+            color: red;
+        }
+
+        .file-valid-block {
+            color: green;
+        }
+    }
+    .modal-footer {
+        display: flex;
+        gap: $modal-gap;
+        align-items: center;
+        justify-content: center;
+        padding: $modal-gap 0;
+        button {
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+        }
+    }
+    
+}

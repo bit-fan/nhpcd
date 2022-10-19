@@ -1,0 +1,76 @@
+$modal-gap: 1rem;
+$modal-border-radius: 0.5rem;
+
+.modal-employee {
+    position: fixed;
+    width: 80%;
+    left: 10%;
+    top: 10%;
+    padding: $modal-gap;
+    background: paleturquoise;
+    border-radius: 1rem;
+
+
+    .modal-title {
+        border-bottom: solid 1px black;
+        margin-bottom: $modal-gap;
+        padding-bottom: $modal-gap;
+
+        .modal-title-close {
+            position: absolute;
+            left: $modal-gap;
+        }
+
+        .modal-title-text {
+            text-align: center;
+            font-weight: bold;
+        }
+    }
+
+    .modal-body {
+        padding: $modal-gap;
+
+        .modal-body-header {
+            color: black;
+            font-size: 1.2rem;
+            padding: 0 0 $modal-gap 0;
+            text-align: left;
+        }
+
+        .modal-body-content {
+            border-radius: $modal-border-radius;
+            border: solid 2px black;
+
+            &>div:not(:last-child) {
+                border-bottom: solid 2px black;
+            }
+
+            &>div {
+                padding: $modal-gap $modal-gap;
+                text-align: left;
+                display: flex;
+                flex-direction: column;
+
+                label {
+                    font-size: 0.75rem;
+                    color: #3683ff;
+                }
+            }
+        }
+    }
+
+    .modal-footer {
+        padding: $modal-gap;
+        display: flex;
+        align-items: center;
+        gap: $modal-gap;
+
+        button {
+            background-color: dimgrey;
+            color: white;
+            flex: 1;
+            border-radius: $modal-border-radius;
+            padding: 0.75rem;
+        }
+    }
+}

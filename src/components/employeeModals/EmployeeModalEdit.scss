@@ -1,0 +1,11 @@
+@use './EmployeeModal.scss';
+
+.modal-body-content {
+    &>div {
+        input {
+            display: block;
+            width: 80%;
+        }
+
+    }
+}

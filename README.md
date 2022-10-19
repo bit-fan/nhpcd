@@ -1,44 +1,5 @@
 ## Code structure
-```
-📦src
- ┣ 📂components
- ┃ ┣ 📂employees
- ┃ ┃ ┣ 📜Employees.scss
- ┃ ┃ ┗ 📜Employees.tsx
- ┃ ┣ 📂modals
- ┃ ┃ ┣ 📜EmployeeModal.scss
- ┃ ┃ ┣ 📜EmployeeModal.tsx
- ┃ ┃ ┣ 📜EmployeeModalDelete.scss
- ┃ ┃ ┣ 📜EmployeeModalDelete.tsx
- ┃ ┃ ┣ 📜EmployeeModalEdit.scss
- ┃ ┃ ┗ 📜EmployeeModalEdit.tsx
- ┃ ┣ 📂pagination-box
- ┃ ┃ ┣ 📜Pagination.scss
- ┃ ┃ ┗ 📜Pagination.tsx
- ┃ ┗ 📂user
- ┃ ┃ ┣ 📜user.scss
- ┃ ┃ ┗ 📜User.tsx
- ┣ 📂pages
- ┃ ┗ 📂dashboard
- ┃ ┃ ┣ 📂Filter
- ┃ ┃ ┃ ┣ 📜Filter.scss
- ┃ ┃ ┃ ┗ 📜Filter.tsx
- ┃ ┃ ┣ 📜Dashboard.scss
- ┃ ┃ ┗ 📜Dashboard.tsx
- ┣ 📂services
- ┃ ┗ 📜employee.ts
- ┣ 📂setting
- ┃ ┗ 📜const.ts
- ┣ 📜App.scss
- ┣ 📜App.test.tsx
- ┣ 📜App.tsx
- ┣ 📜index.scss
- ┣ 📜index.tsx
- ┣ 📜logo.svg
- ┣ 📜react-app-env.d.ts
- ┣ 📜reportWebVitals.ts
- ┗ 📜setupTests.ts
- ```
+
 ## guidence
 # UI/UX
 1. using mobile first approach for responsive design

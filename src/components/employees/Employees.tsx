@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { IEmployeeTable, IEmployeeTableColumns } from "../../pages/dashboard/Dashboard";
 import { deleteEmployeeData, editEmployeeData, IEmployeeData } from "../../services/employee";
-import { EmployeeModalDelete } from "../modals/EmployeeModalDelete";
-import { EmployeeModalEdit } from "../modals/EmployeeModalEdit";
+import { EmployeeModalDelete } from "../employeeModals/EmployeeModalDelete";
+import { EmployeeModalEdit } from "../employeeModals/EmployeeModalEdit";
 import './Employees.scss';
 
 
