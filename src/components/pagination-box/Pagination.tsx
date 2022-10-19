@@ -31,6 +31,7 @@ const PagingBox = ({ total, tableProp, update }: {
             </select>
             {tableProp.curPage < maxPage && <a onClick={() => { update('curPage', tableProp.curPage + 1) }}>{'next'}</a>}
             <a onClick={() => { update('curPage', maxPage) }}>{maxPage}</a>
-        </div></div>
+        </div>
+    </div>
 }
 export default PagingBox;

@@ -34,6 +34,10 @@ const Dashboard: React.FC = () => {
     const [numFilteredEmployee, setNumFilteredEmployee] = useState<number>(0);
     const [tableProp, setTableProp] = useState<IEmployeeTable>(defaultTableProp);
     const [filterValues, setFilterValues] = useState<IFilterValues>();
+    const updateFilterValue = (val: IFilterValues) => {
+        console.log('update filter', val);
+        setFilterValues(val)
+    }
     const updateTablePaging = (key: 'curPage' | 'pageSize', val: number) => {
         console.log('to change', key, val);
         if (key === 'curPage') {
@@ -71,7 +75,7 @@ const Dashboard: React.FC = () => {
         }
     }
     const updateEmployeeForShow = () => {
-        console.log('new prop', tableProp);
+        console.log('new prop', tableProp, filterValues);
         const startIdx = tableProp.pageSize * (tableProp.curPage - 1);
         const endIdx = tableProp.pageSize * tableProp.curPage;
 
@@ -118,7 +122,7 @@ const Dashboard: React.FC = () => {
     return <div className="dashboard-container">
         <User />
         <div className="employee-wrapper">
-            <Filter values={filterValues} updateValue={setFilterValues} />
+            <Filter values={filterValues} updateValue={val => { updateFilterValue(val) }} />
             <PagingBox
                 total={numFilteredEmployee}
                 tableProp={tableProp}

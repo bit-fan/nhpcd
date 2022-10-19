@@ -77,5 +77,5 @@ export const uploadEmployeeData = async (formData: FormData) => {
             console.error('Error:', error);
         });
     // returned status should be updated according to API response
-    return { status: 'ok1', data: 'haha' };
+    return { status: 'ok', data: 'haha' };
 }

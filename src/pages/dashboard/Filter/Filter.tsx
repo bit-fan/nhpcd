@@ -1,40 +1,53 @@
-import { Value } from 'sass';
+import { ChangeEvent, useEffect, useState } from 'react';
 import './Filter.scss';
 export type IFilterValues = {
     lower?: number;
     upper?: number;
 }
+const RangeBoundaryBlock = ({ text, value, onChange }: {
+    text: string,
+    value?: number,
+    onChange: (e: ChangeEvent) => void;
+}) => {
+    return <div className='boundary-input-wrapper'>
+        <div className='range-label'>
+            <div>{text}</div>
+            <div>Enter Amount</div>
+        </div>
+        {/* &#36; is dollar symbol */}
+        <div>&#36;</div>
+        <input
+            value={value}
+            onChange={(e: ChangeEvent) => onChange(e)}
+        />
+    </div>
+}
+
 const Filter = ({ values, updateValue }: {
     values?: IFilterValues,
     updateValue: ({ lower, upper }: IFilterValues) => void
 }) => {
 
-    const RangeBoundaryBlock = ({ type, updateRange, value }: {
-        type: 'lower' | 'upper',
-        value?: number,
-        updateRange: (v: IFilterValues) => void
-    }) => {
-        return <div className='boundary-input-wrapper'>
-            <div className='range-label'>
-                <div>
-                    {type === 'lower' ? 'Minimum Salary' : 'Maximum Salary'}
-                </div>
-                <div>
-                    Enter Amount
-                </div>
-            </div>
-            <div>&#36;</div>
-            <input onChange={e => updateRange({ [type]: Number(e.target.value) })} value={value} />
-        </div>
-    }
+    const [minValue, setMinValue] = useState<number | undefined>(values?.lower || undefined);
+    const [maxValue, setMaxValue] = useState<number | undefined>(values?.upper || undefined);
+
+    useEffect(() => {
+        updateValue({ lower: minValue, upper: maxValue })
+    }, [minValue, maxValue]);
     return <div className='filter-wrapper'>
         <div className='boundary-wrapper'>
             <div className='icon'><div>&#x1F50E;&#xFE0F;</div></div>
-            <RangeBoundaryBlock type='lower' updateRange={newRange => updateValue({ ...values, ...newRange })} value={values?.lower} />
+            <RangeBoundaryBlock
+                text='Minimum Salary'
+                onChange={(e: any) => setMinValue(Number(e.target.value))}
+                value={minValue} />
         </div>
         <div className='boundary-wrapper'>
             <div>-</div>
-            <RangeBoundaryBlock type='upper' updateRange={newRange => updateValue({ ...values, ...newRange })} value={values?.upper} />
+            <RangeBoundaryBlock
+                text='Maximum Salary'
+                onChange={(e: any) => setMaxValue(Number(e.target.value))}
+                value={maxValue} />
         </div>
     </div>
 }
